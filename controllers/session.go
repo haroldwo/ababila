@@ -55,17 +55,16 @@ func (c *SessionController) PostSes() {
 	}
 
 	user := models.User{}
-	user.Name = resp["mobile"].(string)
+	user.Mobile = resp["mobile"].(string)
 	user.Password_hash = resp["password"].(string)
 
 	qs := o.QueryTable("user")
-	err1 := qs.Filter("Name", user.Name).One(&user)
+	err1 := qs.Filter("Mobile", user.Mobile).One(&user)
 	if err1 != nil {
 		resp["errno"] = models.RECODE_USERERR
 		resp["errmsg"] = models.RecodeText(models.RECODE_USERERR)
 		return
 	}
-
 	if resp["password"] != user.Password_hash {
 		resp["errno"] = models.RECODE_PWDERR
 		resp["errmsg"] = models.RecodeText(models.RECODE_PWDERR)

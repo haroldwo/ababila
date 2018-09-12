@@ -34,8 +34,7 @@ func (c *AreaController) GetArea() {
 	value, err := client.Get("area").Bytes()
 	if err != nil {
 		beego.Info(err)
-	}
-	if value != nil {
+	} else if value != nil {
 		err := json.Unmarshal(value, &area)
 		if err != nil {
 			beego.Info(err)
@@ -75,11 +74,6 @@ func (c *AreaController) GetArea() {
 		resp["errmsg"] = models.RecodeText(models.RECODE_DATAERR)
 		return
 	}
-	err1 := client.Set("area", areajson, time.Second*3600)
-	if err1 != nil {
-		beego.Info(err1)
-		resp["errno"] = models.RECODE_DATAERR
-		resp["errmsg"] = models.RecodeText(models.RECODE_DATAERR)
-		return
-	}
+	stt := client.Set("area", areajson, time.Second*3600)
+	beego.Info(stt)
 }
