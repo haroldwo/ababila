@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -30,7 +30,7 @@
                 {{/each}}
             </ul>
             <div class="swiper-pagination"></div>
-            <div class="house-price">￥<span>{{(price/100.0).toFixed(0)}}</span>/晚</div>
+            <div class="house-price">￥<span>{{(price).toFixed(0)}}</span>/晚</div>
         </script>
         <div class="detail-con">
         </div>
@@ -72,9 +72,9 @@
             <div class="house-info layout-style">
                 <h3>房间详情</h3>
                 <ul class="house-info-list">
-                    <li>收取押金<span>{{(house.deposit/100.0).toFixed(0)}}</span></li>
-                    <li>最少入住天数<span>{{house.min_days}}</span></li>
-                    <li>最多入住天数<span>{{if house.max_days==0}}无限制{{else}}{{house.max_days}}{{/if}}</span></li>
+                    <li>收取押金<span>￥{{(house.deposit).toFixed(0)}}</span></li>
+                    <li>最少入住天数<span>{{house.min_days}}天</span></li>
+                    <li>最多入住天数<span>{{if house.max_days==0}}无限制{{else}}{{house.max_days}}天{{/if}}</span></li>
                 </ul>
             </div>
             <div class="house-facility layout-style">
@@ -124,7 +124,7 @@
             <p><span><i class="fa fa-copyright"></i></span>爱家租房&nbsp;&nbsp;享受家的温馨</p>
         </div>
     </div>
-    
+
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/plugins/swiper/js/swiper.jquery.min.js"></script>

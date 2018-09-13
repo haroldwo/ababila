@@ -210,17 +210,35 @@ func (c *UserController) GetHouse() {
 		resp["errmsg"] = models.RecodeText(models.RECODE_SESSIONERR)
 		return
 	}
-	data := models.House{}
-	user := c.GetSession("user_id").(int)
+	mdhouse := []models.House{}
+	uid := c.GetSession("user_id").(int)
 	qs := o.QueryTable("house")
-	_, err1 := qs.Filter("User__Id", user).All(&data)
-	if err1 != nil {
+	num, err1 := qs.Filter("User__Id", uid).RelatedSel().All(&mdhouse)
+	if err1 != nil || num == 0 {
 		beego.Info(err1)
+		resp["errno"] = models.RECODE_NODATA
+		resp["errmsg"] = models.RecodeText(models.RECODE_NODATA)
 		return
 	}
-	house := make(map[string]interface{})
-	house["houses"] = &data
+	beego.Info("Query", num)
+	house := []interface{}{}
+	for _, val := range mdhouse {
+		data := make(map[string]interface{})
+		data["address"] = val.Address
+		data["area_name"] = val.Area.Name
+		data["ctime"] = string(val.Ctime.Format("2006-01-01 15:04:05"))
+		data["house_id"] = val.Id
+		data["img_url"] = val.Index_image_url
+		data["order_count"] = val.Order_count
+		data["price"] = val.Price
+		data["room_count"] = val.Room_count
+		data["title"] = val.Title
+		data["user_avatar"] = val.User.Avatar_url
+		house = append(house, data)
+	}
+	hmap := make(map[string]interface{})
+	hmap["houses"] = &house
 	resp["errno"] = models.RECODE_OK
 	resp["errmsg"] = models.RecodeText(models.RECODE_OK)
-	resp["data"] = &house
+	resp["data"] = &hmap
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -50,7 +50,7 @@
                             <div class="house-text">
                                 <ul>
                                     <li>位于：{{house.area_name}}</li>
-                                    <li>价格：￥{{(house.price/100.0).toFixed(0)}}/晚</li>
+                                    <li>价格：￥{{(house.price).toFixed(0)}}/晚</li>
                                     <li>发布时间：{{house.ctime}}</li>
                                 </ul>
                             </div>
@@ -62,9 +62,9 @@
         </div>
         <div class="footer">
             <p><span><i class="fa fa-copyright"></i></span>爱家租房&nbsp;&nbsp;享受家的温馨</p>
-        </div> 
+        </div>
     </div>
-    
+
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>

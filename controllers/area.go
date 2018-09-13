@@ -45,7 +45,7 @@ func (c *AreaController) GetArea() {
 		resp["errno"] = models.RECODE_OK
 		resp["errmsg"] = models.RecodeText(models.RECODE_OK)
 		resp["data"] = &area
-		beego.Info("use cache")
+		beego.Info("use redis")
 		return
 	}
 
