@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"ababila/models"
 	"encoding/json"
 	"strconv"
 	"time"
 
+	"github.com/ababila/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )

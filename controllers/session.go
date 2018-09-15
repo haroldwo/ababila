@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"ababila/models"
 	"encoding/json"
 
+	"github.com/ababila/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )

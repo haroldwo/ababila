@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"ababila/controllers"
+	"github.com/ababila/controllers"
 
 	"github.com/astaxie/beego"
 )

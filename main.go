@@ -1,11 +1,11 @@
 package main
 
 import (
-	_ "ababila/models"
-	_ "ababila/routers"
 	"net/http"
 	"strings"
 
+	_ "github.com/ababila/models"
+	_ "github.com/ababila/routers"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 )

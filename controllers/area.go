@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"ababila/models"
 	"encoding/json"
 	"time"
 
+	"github.com/ababila/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/go-redis/redis"
