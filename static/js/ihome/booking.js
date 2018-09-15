@@ -19,8 +19,8 @@ function decodeQuery(){
 function showErrorMsg() {
     $('.popup_con').fadeIn('fast', function() {
         setTimeout(function(){
-            $('.popup_con').fadeOut('fast',function(){}); 
-        },1000) 
+            $('.popup_con').fadeOut('fast',function(){});
+        },1000)
     });
 }
 
@@ -60,7 +60,7 @@ $(document).ready(function(){
         if (0 == resp.errno) {
             $(".house-info>img").attr("src", resp.data.house.img_urls[0]);
             $(".house-text>h3").html(resp.data.house.title);
-            $(".house-text>p>span").html((resp.data.house.price/100.0).toFixed(0));
+            $(".house-text>p>span").html((resp.data.house.price).toFixed(0));
         }
     });
     // 订单提交

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -43,7 +43,7 @@
                                 <li>创建时间：{{order.ctime}}</li>
                                 <li>入住日期：{{order.start_date}}</li>
                                 <li>离开日期：{{order.end_date}}</li>
-                                <li>合计金额：￥{{(order.amount/100.0).toFixed(0)}}(共{{order.days}}晚)</li>
+                                <li>合计金额：￥{{(order.amount).toFixed(0)}}(共{{order.days}}晚)</li>
                                 <li>订单状态：
                                     <span>
                                         {{if "WAIT_ACCEPT" == order.status}}
@@ -91,9 +91,9 @@
         </div>
         <div class="footer">
             <p><span><i class="fa fa-copyright"></i></span>爱家租房&nbsp;&nbsp;享受家的温馨</p>
-        </div> 
+        </div>
     </div>
-    
+
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>

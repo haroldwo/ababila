@@ -29,8 +29,8 @@ func (c *SessionController) GetSes() {
 		resp["data"] = &user
 		return
 	}
-	resp["errno"] = models.RECODE_DBERR
-	resp["errmsg"] = models.RecodeText(models.RECODE_DBERR)
+	resp["errno"] = models.RECODE_SESSIONERR
+	resp["errmsg"] = models.RecodeText(models.RECODE_SESSIONERR)
 }
 
 func (c *SessionController) DelSes() {

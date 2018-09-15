@@ -203,13 +203,13 @@ func (c *UserController) GetHouse() {
 	o := orm.NewOrm()
 	resp := make(map[string]interface{})
 	defer c.respdata(&resp)
-
 	if c.GetSession("user_id") == nil {
 		beego.Info("Session", c.GetSession("user_id"))
 		resp["errno"] = models.RECODE_SESSIONERR
 		resp["errmsg"] = models.RecodeText(models.RECODE_SESSIONERR)
 		return
 	}
+
 	mdhouse := []models.House{}
 	uid := c.GetSession("user_id").(int)
 	qs := o.QueryTable("house")
@@ -241,4 +241,91 @@ func (c *UserController) GetHouse() {
 	resp["errno"] = models.RECODE_OK
 	resp["errmsg"] = models.RecodeText(models.RECODE_OK)
 	resp["data"] = &hmap
+}
+
+func (c *UserController) GetOrder() {
+	o := orm.NewOrm()
+	resp := make(map[string]interface{})
+	defer c.respdata(&resp)
+	if c.GetSession("user_id") == nil {
+		beego.Info("Session", c.GetSession("user_id"))
+		resp["errno"] = models.RECODE_SESSIONERR
+		resp["errmsg"] = models.RecodeText(models.RECODE_SESSIONERR)
+		return
+	}
+	role := c.GetString("role")
+	if role == "" {
+		resp["errno"] = models.RECODE_DATAERR
+		resp["errmsg"] = models.RecodeText(models.RECODE_DATAERR)
+		return
+	}
+	if role == "custom" {
+		order := []models.OrderHouse{}
+		uid := models.User{Id: c.GetSession("user_id").(int)}
+		qs := o.QueryTable("OrderHouse")
+		num, err1 := qs.Filter("User__Id", uid).RelatedSel().All(&order)
+		if err1 != nil || num == 0 {
+			beego.Info(err1)
+		}
+		data := []interface{}{}
+		for _, val := range order {
+			uorder := make(map[string]interface{})
+			uorder["amount"] = val.Amount
+			uorder["comment"] = val.Comment
+			uorder["ctime"] = val.Ctime.Format("2006-01-02 15:04:05")
+			uorder["img_url"] = val.House.Index_image_url
+			uorder["title"] = val.House.Title
+			uorder["start_date"] = val.Begin_date.Format("2006-01-02")
+			uorder["end_date"] = val.End_date.Format("2006-01-02")
+			uorder["status"] = val.Status
+			uorder["days"] = val.Days
+			uorder["order_id"] = val.Id
+			data = append(data, uorder)
+		}
+		omap := make(map[string]interface{})
+		omap["orders"] = &data
+		resp["data"] = &omap
+		resp["errno"] = models.RECODE_OK
+		resp["errmsg"] = models.RecodeText(models.RECODE_OK)
+		return
+	}
+	if role == "landlord" {
+		house := []models.House{}
+		uid := c.GetSession("user_id").(int)
+		qs1 := o.QueryTable("House")
+		num, err1 := qs1.Filter("User__Id", uid).RelatedSel().All(&house)
+		if err1 != nil || num == 0 {
+			beego.Info(err1)
+		}
+		data := []interface{}{}
+		order := []models.OrderHouse{}
+		qs2 := o.QueryTable("OrderHouse")
+		for _, val := range house {
+			num, err1 := qs2.Filter("House__Id", val.Id).RelatedSel().All(&order)
+			if err1 != nil || num == 0 {
+				beego.Info(err1)
+			}
+			for _, val := range order {
+				uorder := make(map[string]interface{})
+				uorder["amount"] = val.Amount
+				uorder["comment"] = val.Comment
+				uorder["ctime"] = val.Ctime.Format("2006-01-02 15:04:05")
+				uorder["img_url"] = val.House.Index_image_url
+				uorder["title"] = val.House.Title
+				uorder["start_date"] = val.Begin_date.Format("2006-01-02")
+				uorder["end_date"] = val.End_date.Format("2006-01-02")
+				uorder["status"] = val.Status
+				uorder["days"] = val.Days
+				uorder["order_id"] = val.Id
+				data = append(data, uorder)
+			}
+		}
+
+		omap := make(map[string]interface{})
+		omap["orders"] = &data
+		resp["data"] = &omap
+		resp["errno"] = models.RECODE_OK
+		resp["errmsg"] = models.RecodeText(models.RECODE_OK)
+		return
+	}
 }
