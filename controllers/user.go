@@ -5,10 +5,9 @@ import (
 	"path"
 	"regexp"
 
-	"github.com/ababila/models"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/haroldwo/ababila/models"
 )
 
 type UserController struct {

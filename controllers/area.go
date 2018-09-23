@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/ababila/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/go-redis/redis"
+	"github.com/haroldwo/ababila/models"
 )
 
 type AreaController struct {

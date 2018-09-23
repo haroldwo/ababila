@@ -1,9 +1,8 @@
 package routers
 
 import (
-	"github.com/ababila/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/haroldwo/ababila/controllers"
 )
 
 func init() {

@@ -3,9 +3,9 @@ package controllers
 import (
 	"encoding/json"
 
-	"github.com/ababila/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/haroldwo/ababila/models"
 )
 
 type SessionController struct {

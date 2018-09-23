@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strings"
 
-	_ "github.com/ababila/models"
-	_ "github.com/ababila/routers"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	_ "github.com/haroldwo/ababila/models"
+	_ "github.com/haroldwo/ababila/routers"
 )
 
 func ignoreStaticPath() {

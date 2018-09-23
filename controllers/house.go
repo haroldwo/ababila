@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ababila/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/go-redis/redis"
+	"github.com/haroldwo/ababila/models"
 )
 
 type HouseController struct {
